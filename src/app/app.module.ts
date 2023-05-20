@@ -7,6 +7,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { reducerTodos } from './state/reducer/todos.reducer';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TodoClass } from './state/models/todo.class';
 
 @NgModule({
   declarations: [
@@ -20,32 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
     // 1 lo store, 2 le configurazioni
     StoreModule.forRoot({
-      todos: reducerTodos
-    }, {
-      initialState: {
-        todos: [
-          {
-            id: 'primo',
-            description: 'nessuna descrizione',
-            title: 'prima todo',
-            createdAt: new Date(),
-            isCompleted: false
-          },
-          {
-            id: 'primo',
-            description: 'nessuna descrizione',
-            title: 'prima todo',
-            createdAt: new Date(),
-            isCompleted: false
-          }
-        ]
-        /* todo: [],
-        pratiche: [],
-        users: [],
-        config: {
-          token: '',
-        } */
-      }
+      //todos: reducerTodos
     }),
 
 

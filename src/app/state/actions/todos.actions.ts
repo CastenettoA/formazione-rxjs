@@ -17,7 +17,10 @@ export const deleteTodo = createAction('[TODO, DELETE TODO]', props<{id: string}
 */
 export const updateTodo = createAction('[TODO, UPDATE TODO]',props<{todo: ITodo}>());
 
-
+/**
+ * @description completa un todo.
+ */
+export const completeTodo = createAction('[TODO, COMPLETE TODO]', props<{todo: ITodo}>());
 
 
 

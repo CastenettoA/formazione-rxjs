@@ -1,19 +1,21 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { IState } from './state/reducer/todos.reducer';
-import { addTodo, deleteTodo, updateTodo } from './state/actions/todos.actions';
-import { TodoClass } from './state/models/todo.class';
-import { ITodo } from './state/models/todo.models';
+import { addTodo, completeTodo, deleteTodo, updateTodo } from 'src/app/state/actions/todos.actions';
+import { TodoClass } from 'src/app/state/models/todo.class';
+import { ITodo } from 'src/app/state/models/todo.models';
+import { IState, selectFeatureTodos_uppercase } from 'src/app/state/reducer/todos.reducer';
+
+export type selectorType = 'all' | 'complete' | 'notComplete'
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: 'app-todo',
+  templateUrl: './todo.component.html',
+  styleUrls: ['./todo.component.scss']
 })
-export class AppComponent {
+export class TodoComponent {
   title = 'formazione-rxjs';
-  todos$ = this.store.select('todos');
+  todos$ = this.store.select(selectFeatureTodos_uppercase);
   isEdit = false;
   todoEdit?:ITodo;
 
@@ -24,11 +26,7 @@ export class AppComponent {
 
   constructor(
     private readonly store: Store<IState>
-  ){
-
-  }
-
-  
+  ) {}
 
   addTodo(): void {
     let form:{title: string, description: string} = this.form.getRawValue();
@@ -40,8 +38,8 @@ export class AppComponent {
     }
   }
 
-  deleteTodo(id:string){
-    this.store.dispatch(deleteTodo({id}))
+  deleteTodo(id:string) {
+    this.store.dispatch(deleteTodo({id}));
   }
 
   editTodo(todo:ITodo) {
@@ -49,4 +47,21 @@ export class AppComponent {
     this.todoEdit= {...todo}; // save todo values to todoEdit var 
     this.isEdit = true; // enable edit mode status
   }
+
+  completeTodo(todo:ITodo) {  
+    this.store.dispatch(completeTodo({todo}));
+  }
+  
+  /**
+   * 
+   * @description filtro i todo visualizzati a seconda del selectorType
+   */
+
+  changeSelector(selector: selectorType){
+    switch(selector){
+      default:
+        this.
+    }
+  } 
+    
 }

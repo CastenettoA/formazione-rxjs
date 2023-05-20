@@ -1,26 +1,11 @@
+<nav>
+  <!-- <a [routerLink]="'/'">home</a> -->
+  <a [routerLink]="'/home'">/home </a>
+  <a [routerLink]="'/todo'">/todo</a>
+</nav>
+<hr><hr>
 <div class="row">
-    <div class="col">
-
-      <h2 class="mt-3">Inserisci il tuo atto di volontà.</h2>
-
-        <form [formGroup]="form" (ngSubmit)=addTodo()>
-            <input type="text" class="form-control my-3" formControlName="title"  placeholder="Todo Title">
-            <input type="text" class="form-control my-3" formControlName="description" placeholder="Todo Description">
-          
-          <button type="submit" *ngIf="!isEdit" class="btn btn-primary">Aggiungi todo</button>
-          <button type="submit" *ngIf="isEdit" class="btn btn-primary">Modifica todo</button>
-
-        </form>
-    </div>
-    <div class="col">
-      <h2 class="mt-3">Elenco dei todos.</h2>
-
-        <ul class="list-group">
-          <li class="list-group-item" *ngFor="let todo of todos$ | async">
-            {{ todo.title }} <small>{{todo.description}}</small>
-            <button type="button" class="btn btn-danger" (click)="deleteTodo(todo.id)">x</button>
-            <button type="button" class="btn btn-warning" (click)="editTodo(todo)">edit</button>
-          </li>
-        </ul>
-    </div>
+  <div class="col">
+    <router-outlet></router-outlet>
+  </div>
 </div>
